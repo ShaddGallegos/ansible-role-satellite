@@ -64,3 +64,93 @@
     port: 5000/tcp
     permanent: true
     state: enabled
+
+- name: Open port 7911/tcp on the firewall for DHCP
+  ansible.posix.firewalld:
+    port: 7911/tcp
+    permanent: true
+    state: enabled
+
+- name: Open port 1883/tcp on the firewall for MQTT
+  ansible.posix.firewalld:
+    port: 1883/tcp
+    permanent: true
+    state: enabled
+
+- name: Open port 5646/tcp on the firewall for AMQP
+  ansible.posix.firewalld:
+    port: 5646/tcp
+    permanent: true
+    state: enabled
+
+- name: Open port 8140/tcp on the firewall for HTTPS
+  ansible.posix.firewalld:
+    port: 8140/tcp
+    permanent: true
+    state: enabled
+
+- name: Open port 7/tcp on the firewall for echo
+  ansible.posix.firewalld:
+    port: 7/tcp
+    permanent: true
+    state: enabled
+
+- name: Open port 22/tcp on the firewall for SSH/TLS
+  ansible.posix.firewalld:
+    port: 22/tcp
+    permanent: true
+    state: enabled
+
+- name: Open port 16514/tcp on the firewall for SSH/TLS
+  ansible.posix.firewalld:
+    port: 16514/tcp
+    permanent: true
+    state: enabled
+
+- name: Open port 68/udp on the firewall for DHCP
+  ansible.posix.firewalld:
+    port: 68/udp
+    permanent: true
+    state: enabled
+
+- name: Open port 389/tcp on the firewall for LDAP,LDAPS
+  ansible.posix.firewalld:
+    port: 389/tcp
+    permanent: true
+    state: enabled
+
+- name: Open port 636/tcp on the firewall for LDAP,LDAPS
+  ansible.posix.firewalld:
+    port: 636/tcp
+    permanent: true
+    state: enabled
+
+- name: Open port 5671/tcp on the firewall for LDAP,LDAPS
+  ansible.posix.firewalld:
+    port: 5671
+    permanent: true
+    state: enabled
+
+- name: Open port 5900-5930/tcp on the firewall for noVNC console
+  ansible.posix.firewalld:
+    port: 5900-5930/tcp
+    permanent: true
+    state: enabled
+
+- name: Open port 5900-5930/tcp on the firewall for Discovery
+  ansible.posix.firewalld:
+    port: 8443/tcp
+    permanent: true
+    state: enabled
+
+- name: Open port 623/tcp on the firewall for Power management
+  ansible.posix.firewalld:
+    port: 623/tcp
+    permanent: true
+    state: enabled
+
+- name: Open port 443/tcp on the firewall for DHCP management
+  ansible.posix.firewalld:
+    port: 443/tcp
+    permanent: true
+    state: enabled
