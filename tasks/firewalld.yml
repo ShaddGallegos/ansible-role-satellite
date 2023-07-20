@@ -11,146 +11,43 @@
     state: started
     enabled: yes
 
-- name: Open HTTP port on the firewall
+- name: Open Satellite on the firewall
   ansible.posix.firewalld:
-    service: http
+    service: '{{ item }}'
     permanent: true
     state: enabled
+    with_items:
+      - Satellite
+      - dns
+      - dhcp
+      - ssh
+      - http
+      - https
 
-- name: Open HTTPS port on the firewall
+- name: Open ports 5647/tcp on the firewall
   ansible.posix.firewalld:
-    service: https
+    port: '{{ item }}'
     permanent: true
     state: enabled
-
-- name: Open DNS port on the firewall
-  ansible.posix.firewalld:
-    service: dns
-    permanent: true
-    state: enabled
-
-- name: Open DHCP port on the firewall
-  ansible.posix.firewalld:
-    service: dhcp
-    permanent: true
-    state: enabled
-
-- name: Open port 5647/tcp on the firewall
-  ansible.posix.firewalld:
-    port: 5647/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 8000/tcp on the firewall
-  ansible.posix.firewalld:
-    port: 8000/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 8140/tcp on the firewall
-  ansible.posix.firewalld:
-    port: 8140/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 9090/tcp on the firewall
-  ansible.posix.firewalld:
-    port: 9090/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 5000/tcp on the firewall
-  ansible.posix.firewalld:
-    port: 5000/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 7911/tcp on the firewall for DHCP
-  ansible.posix.firewalld:
-    port: 7911/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 1883/tcp on the firewall for MQTT
-  ansible.posix.firewalld:
-    port: 1883/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 5646/tcp on the firewall for AMQP
-  ansible.posix.firewalld:
-    port: 5646/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 8140/tcp on the firewall for HTTPS
-  ansible.posix.firewalld:
-    port: 8140/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 7/tcp on the firewall for echo
-  ansible.posix.firewalld:
-    port: 7/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 22/tcp on the firewall for SSH/TLS
-  ansible.posix.firewalld:
-    port: 22/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 16514/tcp on the firewall for SSH/TLS
-  ansible.posix.firewalld:
-    port: 16514/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 68/udp on the firewall for DHCP
-  ansible.posix.firewalld:
-    port: 68/udp
-    permanent: true
-    state: enabled
-
-- name: Open port 389/tcp on the firewall for LDAP,LDAPS
-  ansible.posix.firewalld:
-    port: 389/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 636/tcp on the firewall for LDAP,LDAPS
-  ansible.posix.firewalld:
-    port: 636/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 5671/tcp on the firewall for LDAP,LDAPS
-  ansible.posix.firewalld:
-    port: 5671
-    permanent: true
-    state: enabled
-
-- name: Open port 5900-5930/tcp on the firewall for noVNC console
-  ansible.posix.firewalld:
-    port: 5900-5930/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 5900-5930/tcp on the firewall for Discovery
-  ansible.posix.firewalld:
-    port: 8443/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 623/tcp on the firewall for Power management
-  ansible.posix.firewalld:
-    port: 623/tcp
-    permanent: true
-    state: enabled
-
-- name: Open port 443/tcp on the firewall for DHCP management
-  ansible.posix.firewalld:
-    port: 443/tcp
-    permanent: true
-    state: enabled
+    with_items:
+      - 5647/tcp
+      - 8000/tcp
+      - 8140/tcp
+      - 9090/tcp
+      - 5000/tcp
+      - 7911/tcp
+      - 1883/tcp
+      - 5646/tcp
+      - 8140/tcp
+      - 7/tcp
+      - 22/tcp
+      - 16514/tcp
+      - 68/udp
+      - 389/tcp
+      - 636/tcp
+      - 5671/tcp
+      - 5671/udp
+      - 5900-5930/tcp
+      - 8443/tcp
+      - 623/tcp
+      - 443/tcp
