@@ -2,52 +2,52 @@
 # tasks file for configuring firewall
 - name: Make sure firewalld is installed
   ansible.builtin.yum:
-    name: "firewalld"
-    state: "latest"
+  - name: "firewalld"
+  state: "latest"
 
 - name: Make sure firewalld is running
   ansible.builtin.service:
-    name: firewalld
-    state: started
-    enabled: yes
+  - name: firewalld
+  state: started
+  enabled: yes
 
 - name: Open Satellite on the firewall
   ansible.posix.firewalld:
-    service: '{{ item }}'
-    permanent: true
-    state: enabled
-    with_items:
-      - Satellite
-      - dns
-      - dhcp
-      - ssh
-      - http
-      - https
+  service: '{{ item }}'
+  permanent: true
+  state: enabled
+  with_items:
+  - Satellite
+- dns
+- dhcp
+- ssh
+- http
+- https
 
 - name: Open ports 5647/tcp on the firewall
   ansible.posix.firewalld:
-    port: '{{ item }}'
-    permanent: true
-    state: enabled
-    with_items:
-      - 5647/tcp
-      - 8000/tcp
-      - 8140/tcp
-      - 9090/tcp
-      - 5000/tcp
-      - 7911/tcp
-      - 1883/tcp
-      - 5646/tcp
-      - 8140/tcp
-      - 7/tcp
-      - 22/tcp
-      - 16514/tcp
-      - 68/udp
-      - 389/tcp
-      - 636/tcp
-      - 5671/tcp
-      - 5671/udp
-      - 5900-5930/tcp
-      - 8443/tcp
-      - 623/tcp
-      - 443/tcp
+  port: '{{ item }}'
+  permanent: true
+  state: enabled
+  with_items:
+  - 5647/tcp
+- 8000/tcp
+- 8140/tcp
+- 9090/tcp
+- 5000/tcp
+- 7911/tcp
+- 1883/tcp
+- 5646/tcp
+- 8140/tcp
+- 7/tcp
+- 22/tcp
+- 16514/tcp
+- 68/udp
+- 389/tcp
+- 636/tcp
+- 5671/tcp
+- 5671/udp
+- 5900-5930/tcp
+- 8443/tcp
+- 623/tcp
+- 443/tcp

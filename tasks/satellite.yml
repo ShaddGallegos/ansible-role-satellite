@@ -3,28 +3,28 @@
 
 - name: Add hostname to /etc/hosts if defined
   ansible.builtin.lineinfile:
-    path: /etc/hosts
-    line: '{{ ansible_default_ipv4.address }}    {{ sat_hostname }}'
-    insertbefore: BOF
+  path: /etc/hosts
+  line: '{{ ansible_default_ipv4.address }} {{ sat_hostname }}'
+  insertbefore: BOF
   when: sat_hostname is defined
 
 - name: Upgrade all host packages
   ansible.builtin.yum:
-    name: '*'
-    state: latest
+  - name: '*'
+  state: latest
 
 - name: Install the latest version of Satellite
   ansible.builtin.yum:
-    name: satellite
-    state: latest
+  - name: satellite
+  state: latest
 
 - name: Run the Satellite installer
   ansible.builtin.command: |
-      satellite-installer --scenario satellite
-      --foreman-initial-organization {{ sat_org }}
-      --foreman-initial-location {{ sat_location }}
-      --foreman-initial-admin-username {{ sat_username }}
-      --foreman-initial-admin-password {{ sat_password }}
+    satellite-installer --scenario satellite
+    --foreman-initial-organization {{ sat_org }}
+    --foreman-initial-location {{ sat_location }}
+    --foreman-initial-admin-username {{ sat_username }}
+    --foreman-initial-admin-password {{ sat_password }}
 
 - name: Check to see if we need a reboot
   ansible.builtin.command: needs-restarting -r

@@ -1,7 +1,6 @@
 ---
-# defaults file for ansible-role-satellite
-sat_username: admin
-sat_password: redhat
-sat_org: Sales
 sat_location: Denver
+sat_org: Sales
+sat_password: redhat
+sat_username: admin
 sat_version: 6.13
